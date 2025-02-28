@@ -1,4 +1,4 @@
-require('/opt/render/project/src/node_modules/dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
