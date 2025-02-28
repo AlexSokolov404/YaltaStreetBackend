@@ -1,0 +1,32 @@
+# Исключаем node_modules (зависимости)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Исключаем файлы окружения с секретными ключами
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Исключаем логи
+logs
+*.log
+logs/*
+debug.log
+error.log
+
+# Исключаем кэш и временные файлы
+tmp/
+dist/
+build/
+.cache/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Исключаем файлы OS
+*.swp
+*.swo
