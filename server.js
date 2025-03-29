@@ -125,20 +125,28 @@ app.get("/api/get-lines", async (req, res) => {
 
 // 🔹 Удалить линию
 app.delete("/api/delete-line/:id", async (req, res) => {
-    try {
-      await Line.findByIdAndDelete(req.params.id);
-      res.json({ success: true });
-    } catch (err) {
-      res.status(500).json({ error: err.message });
+  try {
+    const deletedLine = await Line.findByIdAndDelete(req.params.id);
+    if (!deletedLine) {
+      return res.status(404).json({ error: "Линия не найдена" });
     }
-  });
+    res.json({ success: true, message: "Линия удалена" });
+  } catch (err) {
+    console.error("Ошибка при удалении линии:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // 🔹 Удалить улицу
 app.delete("/streets/:id", async (req, res) => {
   try {
-    await Street.findByIdAndDelete(req.params.id);
+    const deletedStreet = await Street.findByIdAndDelete(req.params.id);
+    if (!deletedStreet) {
+      return res.status(404).json({ error: "Улица не найдена" });
+    }
     res.json({ message: "Улица удалена" });
   } catch (err) {
+    console.error("Ошибка при удалении улицы:", err);
     res.status(500).json({ error: err.message });
   }
 });
